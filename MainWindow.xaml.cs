@@ -49,20 +49,14 @@ namespace FrameExtractor
 
         private void Browse2Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog chooseDestinationDialog = new OpenFileDialog();
-            chooseDestinationDialog.ShowDialog();
-            try
+            FolderBrowserDialog destinationFolderSelect = new FolderBrowserDialog();
+            destinationFolderSelect.Description = "Please select the destination folder to store the video frames";
+            destinationFolderSelect.ShowNewFolderButton = true;
+            destinationFolderSelect.ShowDialog();
+            if (destinationFolderSelect.SelectedPath != "")
             {
+                Step2TextBox.Text = destinationFolderSelect.SelectedPath;
             }
-            catch (Exception err)
-            {
-                System.Windows.MessageBox.Show("Something went wrong!\n" + err.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            }
-        }
-
-        private void GitHubLinkLabel_Click(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/alitourani");
         }
 
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
@@ -85,6 +79,11 @@ namespace FrameExtractor
             {
                 System.Windows.MessageBox.Show("Something went wrong!\n" + err.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
+        }
+
+        private void GitHubLinkLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://github.com/alitourani");
         }
 
         private void ProcessVideo(object sender, EventArgs e)

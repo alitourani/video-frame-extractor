@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrameExtractor"
         mc:Ignorable="d"
-        Title="Simply extract your video frames!" Height="235.6" Width="632.8">
+        Title="Simply extract your video frames!" Height="221.2" Width="632.8" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label x:Name="GitHubLinkLabel" Content="https://github.com/alitourani" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF1667F0" Cursor="Hand"/>
+        <Label x:Name="GitHubLinkLabel" Content="https://github.com/alitourani" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF1667F0" Cursor="Hand" MouseLeftButtonDown="GitHubLinkLabel_MouseLeftButtonDown"/>
         <Label x:Name="Step1Label" Content="Step 1: Choose Your Video File:" HorizontalAlignment="Left" Margin="17,20,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Step2Label" Content="Step 2: Choose a Destination Folder:" HorizontalAlignment="Left" Margin="17,61,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="ConvertButton" Content="Convert to Image Series" HorizontalAlignment="Left" Margin="211,117,0,0" VerticalAlignment="Top" Width="200" Height="40" Click="ConvertButton_Click"/>
-        <TextBox x:Name="Step1TextBox" HorizontalAlignment="Left" Height="20" Margin="242,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="10" FontFamily="Arial"/>
-        <TextBox x:Name="Step2TextBox" HorizontalAlignment="Left" Height="20" Margin="242,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="10" FontFamily="Arial"/>
+        <Button x:Name="ConvertButton" Content="Convert to Image Series" HorizontalAlignment="Left" Margin="211,105,0,0" VerticalAlignment="Top" Width="200" Height="40" Click="ConvertButton_Click"/>
+        <TextBox x:Name="Step1TextBox" Margin="242,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="10" FontFamily="Arial" HorizontalAlignment="Left" VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False" IsEnabled="False"/>
+        <TextBox x:Name="Step2TextBox" HorizontalAlignment="Left" Margin="241.6,69.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="10" FontFamily="Arial" VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False" IsEnabled="False"/>
         <Button x:Name="Browse1Button" Content="Browse..." HorizontalAlignment="Left" Margin="523,21,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Browse1Button_Click"/>
         <Button x:Name="Browse2Button" Content="Browse..." HorizontalAlignment="Left" Margin="523,63,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Browse2Button_Click"/>
-        <Label x:Name="StatusReportLabel" Content="Pending ..." HorizontalAlignment="Left" Margin="429,124,0,0" VerticalAlignment="Top" Width="181"/>
+        <ProgressBar x:Name="progressReport" HorizontalAlignment="Left" Height="10" Margin="516,171,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>
