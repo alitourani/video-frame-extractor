@@ -30,6 +30,7 @@ namespace FrameExtractor
         VideoCapture capturedVideo;                 // Capture Video
         Mat originalFrame;
         double TotalFrames = 0, FrameCounter = 0;
+        String fileName = "", destinationURL = "";
 
         public MainWindow()
         {
@@ -56,6 +57,7 @@ namespace FrameExtractor
             if (destinationFolderSelect.SelectedPath != "")
             {
                 Step2TextBox.Text = destinationFolderSelect.SelectedPath;
+                destinationURL = Step2TextBox.Text;
             }
         }
 
@@ -63,12 +65,13 @@ namespace FrameExtractor
         {
             try
             {
-                if (Step1TextBox.Text != "" && Step2TextBox.Text != "")
+                if (Step1TextBox.Text != "" && destinationURL != "")
                 {
                     capturedVideo = new VideoCapture(Step1TextBox.Text);
                     TotalFrames = Convert.ToDouble(capturedVideo.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameCount));
                     originalFrame = new Mat();
                     capturedVideo.ImageGrabbed += ProcessVideo;
+                    capturedVideo.Start();
                 }
                 else
                 {
@@ -89,9 +92,22 @@ namespace FrameExtractor
         private void ProcessVideo(object sender, EventArgs e)
         {
             FrameCounter++;
-            while (FrameCounter < TotalFrames)
+            if (FrameCounter < TotalFrames)
             {
-                // Save frames in a directory
+                try
+                {
+                    capturedVideo.Retrieve(originalFrame);
+                    fileName = "RetrievedFrame" + FrameCounter + ".png";
+                    originalFrame.Save(System.IO.Path.Combine(destinationURL, fileName));
+                }
+                catch (Exception err)
+                {
+                    System.Windows.MessageBox.Show("Error in processing frames!\n" + err.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+            } else
+            {
+                System.Windows.MessageBox.Show("Retrieving video frames has been finished successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                capturedVideo.Dispose();
             }
         }
      }
