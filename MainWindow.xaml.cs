@@ -99,6 +99,11 @@ namespace FrameExtractor
                     capturedVideo.Retrieve(originalFrame);
                     fileName = "RetrievedFrame" + FrameCounter + ".png";
                     originalFrame.Save(System.IO.Path.Combine(destinationURL, fileName));
+                    // Invoke UI's thread
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        progressReport.Value = (FrameCounter / TotalFrames) * 100;
+                    });
                 }
                 catch (Exception err)
                 {
@@ -106,7 +111,14 @@ namespace FrameExtractor
                 }
             } else
             {
-                System.Windows.MessageBox.Show("Retrieving video frames has been finished successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show("Retrieving video frames has been finished successfully!\nNumber of extracted frames: " +
+                    + (FrameCounter-1) + "", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                // Invoke UI's thread
+                this.Dispatcher.Invoke(() =>
+                {
+                    progressReport.Value = 0;
+                });
+                FrameCounter = 0;
                 capturedVideo.Dispose();
             }
         }
