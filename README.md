@@ -1,7 +1,7 @@
 # Video-frame Extractor
 This project is an application to extract video frames from a given video files for applying Digital Image Processing techniques on individual video frames.
 
-![Ali Tourani - Frame Extractor - Sample Output](http://alitourani.ir/wp-content/uploads/Frame-Extrator-Github.png "Ali Tourani - Frame Extractor - Sample Output")
+![Ali Tourani - Frame Extractor - Sample Output](AliTourani-Frame-Extrator-Github.png "Ali Tourani - Frame Extractor - Sample Output")
 
 # Environment
 - C# Programming Language
